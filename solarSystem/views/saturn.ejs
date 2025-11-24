@@ -3,19 +3,56 @@
 
 <%- include('partials/head.ejs')%>
 
-<body>
-    <h1>The Solar System</h1>
-    
-    <%- include('partials/nav.ejs')%>
+    <body>
+        <div class="mainBox">
 
-    <h2>Planet Saturn</h2>
-    <p>
-        <%= planetSaturn.description%>
-    </p>
 
-    <img src="<%= planetSaturn.image%>">
-</body>
+            <%- include('partials/header.ejs')%>
 
-<%- include('partials/footer.ejs')%>
+            <%- include('partials/nav.ejs')%>
+
+                <h2>Planet Saturn</h2>
+                <p class="longParagraph">
+                    <%= planetSaturn.description%>
+                </p>
+
+                <img class="planetImg" src="<%= planetSaturn.image%>">
+
+                <h3>Distance From Sun</h3>
+                <p>
+                    <%= planetSaturn.distanceFromSun%>
+                </p>
+
+                <h3>Year Length</h3>
+                <p>
+                    <%= planetSaturn.yearLength%>
+                </p>
+
+                <h3>Radius</h3>
+                <p>
+                    <%= planetSaturn.radius%>
+                </p>
+
+                <div class="webLink">
+                    <a href="<%= planetSaturn.websiteLink%>">Website Link</a>
+                </div>
+
+
+                <h3>One Earth Day</h3>
+                <p>
+                    <%= planetSaturn.oneEarthDay%>
+                </p>
+
+                <h3>Moons</h3>
+                <p>
+                    <%= planetSaturn.moons%>
+                </p>
+
+
+
+        </div>
+    </body>
+
+    <%- include('partials/footer.ejs')%>
 
 </html>

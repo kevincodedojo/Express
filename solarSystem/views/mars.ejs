@@ -1,19 +1,56 @@
 <!DOCTYPE html>
 <html>
 
-    <%- include('partials/head.ejs')%>
+<%- include('partials/head.ejs')%>
 
     <body>
-        <h1>The Solar System</h1>
+        <div class="mainBox">
 
-        <%- include('partials/nav.ejs')%>
 
-            <h2>Planet Mars</h2>
-            <p>
-                <%= planetMars.description%>
-            </p>
+            <%- include('partials/header.ejs')%>
 
-            <img src="<%= planetMars.image%>">
+            <%- include('partials/nav.ejs')%>
+
+                <h2>Planet Mars</h2>
+                <p class="longParagraph">
+                    <%= planetMars.description%>
+                </p>
+
+                <img class="planetImg" src="<%= planetMars.image%>">
+
+                <h3>Distance From Sun</h3>
+                <p>
+                    <%= planetMars.distanceFromSun%>
+                </p>
+
+                <h3>Year Length</h3>
+                <p>
+                    <%= planetMars.yearLength%>
+                </p>
+
+                <h3>Radius</h3>
+                <p>
+                    <%= planetMars.radius%>
+                </p>
+
+                <div class="webLink">
+                    <a href="<%= planetMars.websiteLink%>">Website Link</a>
+                </div>
+
+
+                <h3>One Earth Day</h3>
+                <p>
+                    <%= planetMars.oneEarthDay%>
+                </p>
+
+                <h3>Moons</h3>
+                <p>
+                    <%= planetMars.moons%>
+                </p>
+
+
+
+        </div>
     </body>
 
     <%- include('partials/footer.ejs')%>

@@ -3,19 +3,56 @@
 
 <%- include('partials/head.ejs')%>
 
-<body>
-    <h1>The Solar System</h1>
-    
-    <%- include('partials/nav.ejs')%>
+    <body>
+        <div class="mainBox">
 
-    <h2>Planet Uranus</h2>
-    <p>
-        <%= planetUranus.description%>
-    </p>
 
-    <img src="<%= planetUranus.image%>">
-</body>
+            <%- include('partials/header.ejs')%>
 
-<%- include('partials/footer.ejs')%>
+            <%- include('partials/nav.ejs')%>
+
+                <h2>Planet Uranus</h2>
+                <p class="longParagraph">
+                    <%= planetUranus.description%>
+                </p>
+
+                <img class="planetImg" src="<%= planetUranus.image%>">
+
+                <h3>Distance From Sun</h3>
+                <p>
+                    <%= planetUranus.distanceFromSun%>
+                </p>
+
+                <h3>Year Length</h3>
+                <p>
+                    <%= planetUranus.yearLength%>
+                </p>
+
+                <h3>Radius</h3>
+                <p>
+                    <%= planetUranus.radius%>
+                </p>
+
+                <div class="webLink">
+                    <a href="<%= planetUranus.websiteLink%>">Website Link</a>
+                </div>
+
+
+                <h3>One Earth Day</h3>
+                <p>
+                    <%= planetUranus.oneEarthDay%>
+                </p>
+
+                <h3>Moons</h3>
+                <p>
+                    <%= planetUranus.moons%>
+                </p>
+
+
+
+        </div>
+    </body>
+
+    <%- include('partials/footer.ejs')%>
 
 </html>
