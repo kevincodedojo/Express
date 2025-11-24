@@ -18,6 +18,18 @@ app.get('/', async(req, res) => {
     res.render('index', )
 });
 
+app.get('/mercury', (req, res) => {
+    let planetMercury = planets.getMercury();
+    
+    res.render('mercury', {planetMercury})
+});
+
+app.get('/venus', (req, res) => {
+    let planetVenus = planets.getVenus();
+    
+    res.render('venus', {planetVenus})
+});
+
 app.get('/earth', (req, res) => {
     let planetEarth = planets.getEarth();
     // console.log(planetEarth);
@@ -26,8 +38,32 @@ app.get('/earth', (req, res) => {
 
 app.get('/mars', (req, res) => {
     let planetMars = planets.getMars();
-    console.log(planetMars);
+    
     res.render('mars', {planetMars})
+});
+
+app.get('/jupiter', (req, res) => {
+    let planetJupiter = planets.getJupiter();
+    
+    res.render('jupiter', {planetJupiter})
+});
+
+app.get('/saturn', (req, res) => {
+    let planetSaturn = planets.getSaturn();
+    
+    res.render('saturn', {planetSaturn})
+});
+
+app.get('/uranus', (req, res) => {
+    let planetUranus = planets.getUranus();
+    
+    res.render('uranus', {planetUranus})
+});
+
+app.get('/neptune', (req, res) => {
+    let planetNeptune = planets.getNeptune();
+    
+    res.render('neptune', {planetNeptune})
 });
 
 app.listen(3000, () => {

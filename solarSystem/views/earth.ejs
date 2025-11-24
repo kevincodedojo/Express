@@ -1,26 +1,58 @@
 <!DOCTYPE html>
 <html>
 
-<!-- <head>
-    <meta charset="utf-8">
-    <title>Solar System</title>
-</head> -->
-
 <%- include('partials/head.ejs')%>
 
-<body>
-    <h1>The Solar System</h1>
-    
-    <%- include('partials/nav.ejs')%>
+    <body>
+        <div class="mainBox">
 
-    <h2>Planet Earth</h2>
-    <p>
-        <%= planetEarth.description%>
-    </p>
 
-    <img src="<%= planetEarth.image%>">
-</body>
+            <h1>The Solar System</h1>
 
-<%- include('partials/footer.ejs')%>
+            <%- include('partials/nav.ejs')%>
+
+                <h2>Planet Earth</h2>
+                <p>
+                    <%= planetEarth.description%>
+                </p>
+
+                <img class="planetImg" src="<%= planetEarth.image%>">
+
+                <h3>Distance From Sun</h3>
+                <p>
+                    <%= planetEarth.distanceFromSun%>
+                </p>
+
+                <h3>Year Length</h3>
+                <p>
+                    <%= planetEarth.yearLength%>
+                </p>
+
+                <h3>Radius</h3>
+                <p>
+                    <%= planetEarth.radius%>
+                </p>
+
+                <div class="webLink">
+                    <a href="<%= planetEarth.websiteLink%>">Website Link</a>
+                </div>
+
+
+                <h3>One Earth Day</h3>
+                <p>
+                    <%= planetEarth.oneEarthDay%>
+                </p>
+
+                <h3>Moons</h3>
+                <p>
+                    <%= planetEarth.moons%>
+                </p>
+
+
+
+        </div>
+    </body>
+
+    <%- include('partials/footer.ejs')%>
 
 </html>

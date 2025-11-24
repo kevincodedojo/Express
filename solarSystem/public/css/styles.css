@@ -1,4 +1,76 @@
-body{
-    background-color: #eeebd3;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #364156;
+}
+
+nav>a {
+    color: #2486aa;
+    text-decoration: none;
+    /* color: #333; */
+    padding: 10px 16px;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+nav > a:hover {
+  color: white;
+  background-color: #58c7ef;
+  border-radius: 10px;
+}
+
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-se;
+    background-color: #364156;
     text-align: center;
+}
+
+.planetImg {
+    width: 500px;
+    margin-top: 20px;
+    border-radius: 20px;
+}
+
+.mainBox {
+    padding: 30px;
+    background-color: #ebebeb;
+    margin: 30px 100px;
+    border-radius: 16px;
+    min-width: 600px;
+
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+h2 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    margin-top: 30px;
+    margin-bottom: 8px;
+}
+
+.webLink {
+    margin-top: 30px;
+}
+
+a {
+    color: black;
+    font-weight: 700;
+}
+
+footer{
+    padding: 20px 0;
+    background-color: #3b4f71;
+}
+
+footer > p{
+    color: #ebebeb;
 }
