@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head.ejs')%>
+
+<body>
+    
+    <%- include('partials/nav.ejs')%>
+
+    <main>
+        <div class="banner">
+            <h1>Agile vs Waterfall</h1>
+            <p>Understanding the relationship and differences</p>
+        </div>
+
+        <div class="block_section">
+            <h2>The Relationship</h2>
+            <p>Waterfall and Agile are opposite approaches to software development. Waterfall is the traditional method that Agile was created to replace and improve upon. They represent two fundamentally different philosophies about how to build software.</p>
+        </div>
+
+        <div class="block_section">
+            <h2>Key Differences</h2>
+            <figure>
+
+                <div class="img_container">
+                    <img src="./img/ab_comparison.jpeg" alt="Two pages are compared together, one shows with letter A, the other shows with letter B." 
+                        >
+                </div>
+                
+            </figure>
+
+
+            <div class="compare_table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Waterfall</th>
+                            <th>Agile</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td><strong>Development Approach</strong></td>
+                            <td>Sequential and linear - one phase must be completed before the next begins</td>
+                            <td>Iterative and incremental - work happens in repeated cycles with continuous feedback</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Flexibility</strong></td>
+                            <td>Rigid - changes are difficult and expensive once a phase is complete</td>
+                            <td>Flexible - welcomes changes even late in development</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Requirements</strong></td>
+                            <td>All requirements defined upfront before development starts</td>
+                            <td>Requirements evolve throughout the project based on feedback</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Customer Involvement</strong></td>
+                            <td>Limited involvement - mainly at the beginning (requirements) and end (delivery)</td>
+                            <td>Continuous involvement - regular feedback and collaboration throughout</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            
+        </div>
+        
+    </main>
+
+    
+    <%- include('partials/footer.ejs')%>
+    
+</body>
+</html>
