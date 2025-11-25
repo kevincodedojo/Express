@@ -3,78 +3,139 @@
 
 <%- include('partials/head.ejs')%>
 
-<body>
-    
-    <%- include('partials/nav.ejs')%>
+    <body>
 
-    <main>
-        <div class="banner">
-            <h1>Agile vs Waterfall</h1>
-            <p>Understanding the relationship and differences</p>
-        </div>
+        <%- include('partials/nav.ejs')%>
 
-        <div class="block_section">
-            <h2>The Relationship</h2>
-            <p>Waterfall and Agile are opposite approaches to software development. Waterfall is the traditional method that Agile was created to replace and improve upon. They represent two fundamentally different philosophies about how to build software.</p>
-        </div>
-
-        <div class="block_section">
-            <h2>Key Differences</h2>
-            <figure>
-
-                <div class="img_container">
-                    <img src="./img/ab_comparison.jpeg" alt="Two pages are compared together, one shows with letter A, the other shows with letter B." 
-                        >
+            <main>
+                <div class="banner">
+                    <h1>Agile Project Simulator</h1>
+                    <p>Show what a simple backlog and daily status might look like in a real project</p>
+                    <p><strong>@faker-js/faker</strong> – fake backlog items, team members, and estimates</p>
+                    <p><strong>Techy API</strong> – a tech-savvy phrase from
+                        <code>https://techy-api.vercel.app/api/json</code>
+                    </p>
                 </div>
-                
-            </figure>
+
+                <div class="block_section">
+                    <h2>Techy Sprint Status</h2>
+                    <p>
+                        <%= techyPhrase %>
+                    </p>
+                    <p style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.8;">
+                        (Fetched from Techy API)
+                    </p>
+                </div>
+
+                <div class="block_section">
+                    <h2>Current Sprint</h2>
+                    <p>
+                        <strong>
+                            <%= sprintInfo.sprintName %>
+                        </strong><br>
+                        Scrum Master: <strong>
+                            <%= sprintInfo.scrumMaster %>
+                        </strong><br>
+                        Start: <%= sprintInfo.startDate.toDateString() %><br>
+                            End: <%= sprintInfo.endDate.toDateString() %>
+                    </p>
+                    <p style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.8;">
+                        (Data generated using the <code>@faker-js/faker</code> Node package.)
+                    </p>
+                </div>
 
 
-            <div class="compare_table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Aspect</th>
-                            <th>Waterfall</th>
-                            <th>Agile</th>
-                        </tr>
-                    </thead>
+                <div class="block_section">
+                    <h2>Sprint Backlog</h2>
+                    <!-- <figure>
 
-                    <tbody>
-                        <tr>
-                            <td><strong>Development Approach</strong></td>
-                            <td>Sequential and linear - one phase must be completed before the next begins</td>
-                            <td>Iterative and incremental - work happens in repeated cycles with continuous feedback</td>
-                        </tr>
+                        <div class="img_container">
+                            <img src="./img/ab_comparison.jpeg"
+                                alt="Two pages are compared together, one shows with letter A, the other shows with letter B.">
+                        </div>
 
-                        <tr>
-                            <td><strong>Flexibility</strong></td>
-                            <td>Rigid - changes are difficult and expensive once a phase is complete</td>
-                            <td>Flexible - welcomes changes even late in development</td>
-                        </tr>
+                    </figure> -->
 
-                        <tr>
-                            <td><strong>Requirements</strong></td>
-                            <td>All requirements defined upfront before development starts</td>
-                            <td>Requirements evolve throughout the project based on feedback</td>
-                        </tr>
 
-                        <tr>
-                            <td><strong>Customer Involvement</strong></td>
-                            <td>Limited involvement - mainly at the beginning (requirements) and end (delivery)</td>
-                            <td>Continuous involvement - regular feedback and collaboration throughout</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
 
-            
-        </div>
-        
-    </main>
 
-    
-    <%- include('partials/footer.ejs')%>
-    
-</body>
+                    <div class="compare_table">
+
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>User Story / Task</th>
+                                    <th>Type</th>
+                                    <th>Assignee</th>
+                                    <th>Estimate (pts)</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% backlogItems.forEach((item, idx)=> { %>
+                                    <tr>
+                                        <td>
+                                            <%= idx + 1 %>
+                                        </td>
+                                        <td>
+                                            <%= item.title %>
+                                        </td>
+                                        <td>
+                                            <!-- <%= item.type %> -->
+                                            <% if (item.type==='Feature' ) { %>
+                                                <span class="badge badge-feature">Feature</span>
+                                                <% } else if (item.type==='Bug' ) { %>
+                                                    <span class="badge badge-bug">Bug</span>
+                                                    <% } else { %>
+                                                        <span class="badge badge-task">Task</span>
+                                                        <% } %>
+                                        </td>
+                                        <td>
+                                            <%= item.assignee %>
+                                        </td>
+                                        <td>
+                                            <%= item.estimate %>
+                                        </td>
+                                        <td>
+                                            <% if (item.status==='To Do' ) { %>
+                                                <span class="status-todo">
+                                                    <%= item.status %>
+                                                </span>
+                                                <% } else if (item.status==='In Progress' ) { %>
+                                                    <span class="status-inprogress">
+                                                        <%= item.status %>
+                                                    </span>
+                                                    <% } else { %>
+                                                        <span class="status-done">
+                                                            <%= item.status %>
+                                                        </span>
+                                                        <% } %>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
+                        </table>
+
+                        <p style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.8;">
+                            (Data generated using the <code>@faker-js/faker</code> Node package.)
+                        </p>
+
+                    </div>
+
+
+
+
+                </div>
+
+
+
+            </main>
+
+
+            <%- include('partials/footer.ejs')%>
+
+    </body>
+
 </html>
