@@ -1,0 +1,81 @@
+<%- include("partials/header.ejs")%>
+
+    <body>
+
+        <h1 class="headerh1"> Quote Finder </h1>
+
+        <div class="mainbox">
+
+            <!-- search by Keyword -->
+            <form action="/searchByKeyword" class="search-form">
+                <label class="form-label">Keyword:</label>
+                <div class="form-row">
+                    <input type="text" name="keyword" class="form-control"  placeholder="Enter keyword...">
+                    <button>Search by Keyword</button>
+                </div>
+
+            </form>
+            
+            <!-- search by Author -->
+            <form action="/searchByAuthor" class="search-form">
+                <label class="form-label">Author:</label>
+                <div class="form-row">
+                <select name="authorId" class="form-select">
+                    <% for (author of authors){ %>
+
+                        <option value="<%= author.authorId%>">
+                            <%= author.firstName%>
+                            <%= author.lastName%>
+                        </option>
+                    <%}%>
+
+
+                <!-- <option value="1">
+                    Albert Einstein
+                </option>
+                <option value="2">
+                    Agatha Christie
+                </option> -->
+                </select>
+                <button>Search by Author</button>
+                </div>
+            </form>
+           
+            <!-- search by Category -->
+            <form action="/searchByCategory" class="search-form">
+                <label class="form-label">Category:</label>
+                <div class="form-row">
+                    <select name="category" class="form-select">
+                        <% for (category of categories){ %>
+
+                            <option value="<%= category.category%>">
+                                <%= category.category%>
+                            </option>
+
+                            <%}%>
+
+                    </select>
+                    <button>Search by Category</button>
+                </div>
+            </form>
+
+             <!-- search by likes -->
+            <form action="/searchByLikes" class="search-form">
+                <label class="form-label">Likes Range:</label>
+                    <div class="form-row">
+                        <input type="number" name="likeNumL" class="form-control" placeholder="Min">
+                        <span class="range-separator">to</span>
+                        <input type="number" name="likeNumR" class="form-control" placeholder="Max">
+                        <button>Search by Likes</button>
+                    </div>
+            </form>
+            <br>
+
+        </div>
+
+
+        <%- include("partials/footer.ejs")%>
+
+    </body>
+
+    </html>

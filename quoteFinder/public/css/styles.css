@@ -1,0 +1,143 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #582603;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.headerh1{
+    color: aliceblue;
+    margin: 40px 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.mainbox{
+    background-color: #a16900;
+    /* margin: 50px 0; */
+    padding: 50px 50px;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(83, 3, 3, 0.3);
+
+    margin-bottom: auto;
+}
+
+.search-form{
+    margin-bottom: 25px;
+}
+
+.search-form:last-child {
+    margin-bottom: 0;
+}
+
+.form-label {
+    display: block;
+    color: aliceblue;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.form-control,
+.form-select {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    outline: 2px solid #f8f9fa;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-light:hover {
+    background-color: #ffc107;
+    transform: translateY(-2px);
+}
+
+.range-separator {
+    color: aliceblue;
+    font-size: 14px;
+}
+
+/* quote Cards */
+.quote-card {
+    background-color: #7a3c06;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.quote-card:last-of-type {
+    margin-bottom: 25px;
+}
+
+.quote-text {
+    color: aliceblue;
+    font-size: 18px;
+    line-height: 1.6;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.quote-author {
+    color: #f0d9b5;
+    text-align: right;
+    margin: 0;
+}
+
+.author-link {
+    color: #ffc107;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.author-link:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.no-results {
+    color: aliceblue;
+    text-align: center;
+    font-size: 18px;
+    padding: 20px;
+}
+
+
+/* footer css */
+footer{
+    width: 100%;
+    background-color: #4a2000;  /* Darker brown */
+    color: aliceblue;
+    text-align: center;
+    padding: 15px;
+    margin-top: auto;
+    font-size: small;
+}
