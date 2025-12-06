@@ -40,19 +40,49 @@ app.post('/author/new', async(req, res) => {
     let portrait = req.body.portrait;
     let biography = req.body.biography;
 
-    let sql = `INSERT INTO q_authors
+    let auInsertSql = `INSERT INTO q_authors
                 (firstName, lastName, dob, dod, sex, profession,
                 country, portrait, biography)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 `;
     let params = [fName, lName, birthDay, deathDay, sex, profession,
                     country, portrait, biography];
-    const [authors] = await pool.query(sql, params);
+    const [authors] = await pool.query(auInsertSql, params);
     res.render("newAuthor",
                 {"message": "Author added!"}
     );  
     
+});
 
+//Display all Authors information
+app.get('/authors', async(req, res) => {
+
+    let displayAuSql = `SELECT *
+                FROM q_authors
+                ORDER BY lastName
+            `;
+
+    const [authorRows] = await pool.query(displayAuSql);
+    
+    res.render('authorList', 
+        {"authorRows" : authorRows}
+    );
+});
+
+//Edit Authors information
+app.get('/author/edit', async(req, res) => {
+    let authorId = req.query.authorId;
+    let authorInfoSql = `SELECT *,
+                DATE_FORMAT(dob, '%y-%m-%d') dobISO
+                FROM q_authors
+                WHERE authorId = ${authorId}
+            `;
+
+    const [authorInfo] = await pool.query(authorInfoSql);
+    
+    res.render('editAuthor', 
+        {"authorInfo" : authorInfo}
+    );
 });
 
 

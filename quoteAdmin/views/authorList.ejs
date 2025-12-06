@@ -1,0 +1,25 @@
+<%- include("partials/header.ejs") %>
+
+<body>
+    <h1>Updata/Delate Authors</h1>
+
+    <% for(i = 0; i < authorRows.length; i++){ %>
+
+        <a href="
+            /author/edit?authorId=<%= authorRows[i].authorId %>
+        ">UPDATE</a>
+
+        <a href="
+            /author/delate?authorId=<%= authorRows[i].authorId %>
+        ">DELETE</a>
+
+        <%= authorRows[i].firstName %>
+        <%= authorRows[i].lastName %>
+
+    <% } %>
+
+
+
+</body>
+
+<%- include("partials/footer.ejs") %>
