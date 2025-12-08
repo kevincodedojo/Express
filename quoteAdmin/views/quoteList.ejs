@@ -1,0 +1,25 @@
+<%- include("partials/header.ejs") %>
+
+<body>
+    <h1>Updata/Delate Quotes</h1>
+
+    <% for(i = 0; i < quoteRows.length; i++){ %>
+
+        <a href="
+            /quote/edit?quoteId=<%= quoteRows[i].quoteId %>
+        ">UPDATE</a>
+
+        <a href="
+            /quote/delete?quoteId=<%= quoteRows[i].quoteId %>
+        ">DELETE</a>
+
+        <%= quoteRows[i].quote %><br>
+    
+
+    <% } %>
+
+
+
+</body>
+
+<%- include("partials/footer.ejs") %>

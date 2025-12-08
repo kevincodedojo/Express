@@ -26,8 +26,14 @@ app.get('/author/new', (req, res) => {
     res.render('newAuthor');
 });
 
+//Display form for input Quote information
+app.get('/quote/new', (req, res) => {
+    
+    res.render('newQuote');
+});
 
-//submitting data to be stored in database
+
+//submitting Author data to be stored in database
 app.post('/author/new', async(req, res) => {
 
     let fName = req.body.fName;
@@ -51,6 +57,28 @@ app.post('/author/new', async(req, res) => {
     res.render("newAuthor",
                 {"message": "Author added!"}
     );  
+
+    
+});
+
+//submitting Quote data to be stored in database
+app.post('/quote/new', async(req, res) => {
+
+    let quote = req.body.quote;
+    let authorId = req.body.authorId;
+    let category = req.body.category;
+    let likes = req.body.likes;
+    
+
+    let quoteInsertSql = `INSERT INTO q_quotes
+                (quote, authorId, category, likes)
+                VALUES (?, ?, ?, ?)
+                `;
+    let params = [quote, authorId, category, likes];
+    const [newQuote] = await pool.query(quoteInsertSql, params);
+    res.render("newQuote",
+                {"message": "Quote added!"}
+    );  
     
 });
 
@@ -69,11 +97,27 @@ app.get('/authors', async(req, res) => {
     );
 });
 
-//Edit Authors information
+//Display all Quotes information
+app.get('/quotes', async(req, res) => {
+
+    let displayQuoteSql = `SELECT *
+                FROM q_quotes
+                ORDER BY quoteId
+            `;
+
+    const [quoteRows] = await pool.query(displayQuoteSql);
+    
+    res.render('quoteList', 
+        {"quoteRows" : quoteRows}
+    );
+});
+
+//Display Editable Authors information
 app.get('/author/edit', async(req, res) => {
     let authorId = req.query.authorId;
     let authorInfoSql = `SELECT *,
-                DATE_FORMAT(dob, '%y-%m-%d') dobISO
+                DATE_FORMAT(dob, '%Y-%m-%d') dobISO,
+                DATE_FORMAT(dod, '%Y-%m-%d') dodISO
                 FROM q_authors
                 WHERE authorId = ${authorId}
             `;
@@ -83,6 +127,73 @@ app.get('/author/edit', async(req, res) => {
     res.render('editAuthor', 
         {"authorInfo" : authorInfo}
     );
+});
+
+//Display Editable Quote information
+app.get('/quote/edit', async(req, res) => {
+    let quoteId = req.query.authorId;
+    let quoteInfoSql = `SELECT *
+                FROM q_quotes
+                WHERE quoteId = ${quoteId}
+            `;
+
+    const [quoteInfo] = await pool.query(quoteInfoSql);
+    
+    res.render('editQuote', 
+        {"quoteInfo" : quoteInfo}
+    );
+});
+
+//Update Authors information
+app.post("/author/edit", async (req, res) => {
+
+    let updateAuthorInfoSql = `
+        UPDATE q_authors
+        SET firstName = ?,
+            lastName = ?,
+            dob = ?,
+            dod = ?,
+            sex = ?,
+            profession = ?,
+            country = ?,
+            portrait = ?,
+            biography = ?
+        WHERE authorId = ?
+    `;
+
+    let params = [
+        req.body.fName,
+        req.body.lName,
+        req.body.birthDate,
+        req.body.deathDate,
+        req.body.sex,
+        req.body.profession,
+        req.body.country,
+        req.body.portrait,
+        req.body.biography,
+        req.body.authorId
+    ];
+
+    const [updateAuthorInfo] = await pool.query(updateAuthorInfoSql, params);
+    res.redirect("/authors");
+
+});
+
+//Delete author
+app.get("/author/delete", async(req,res) => {
+
+    let authorId = req.query.authorId;
+
+    let deleteSql = `
+        DELETE
+        FROM q_authors
+        WHERE authorId = ?
+    `;
+
+    const [rows] = await pool.query(deleteSql, [authorId]);
+
+    res.redirect("/authors");
+
 });
 
 
