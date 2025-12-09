@@ -131,7 +131,7 @@ app.get('/author/edit', async(req, res) => {
 
 //Display Editable Quote information
 app.get('/quote/edit', async(req, res) => {
-    let quoteId = req.query.authorId;
+    let quoteId = req.query.quoteId;
     let quoteInfoSql = `SELECT *
                 FROM q_quotes
                 WHERE quoteId = ${quoteId}
@@ -179,6 +179,31 @@ app.post("/author/edit", async (req, res) => {
 
 });
 
+//Update Quote information
+app.post("/quote/edit", async (req, res) => {
+
+    let updateQuoteInfoSql = `
+        UPDATE q_quotes
+        SET quote = ?,
+            authorId = ?,
+            category = ?,
+            likes = ?
+        WHERE quoteId = ?
+    `;
+
+    let params = [
+        req.body.quote,
+        req.body.authorId,
+        req.body.category,
+        req.body.likes,
+        req.body.quoteId
+    ];
+
+    const [updateQuoteInfo] = await pool.query(updateQuoteInfoSql, params);
+    res.redirect("/quotes");
+
+});
+
 //Delete author
 app.get("/author/delete", async(req,res) => {
 
@@ -196,9 +221,22 @@ app.get("/author/delete", async(req,res) => {
 
 });
 
+//Delete quote
+app.get("/quote/delete", async(req, res) => {
 
+    let quoteId = req.query.quoteId;
 
+    let deleteSql = `
+        DELETE
+        FROM q_quotes
+        WHERE quoteId = ?
+    `;
 
+    const [rows] = await pool.query(deleteSql, [quoteId]);
+
+    res.redirect("/quotes");
+
+});
 
 
 app.get("/dbTest", async (req, res) => {
