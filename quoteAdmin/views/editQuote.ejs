@@ -8,10 +8,34 @@
             <input type="hidden" name="quoteId" value="<%=quoteInfo[0].quoteId%>">
             Quote:
             <input type="text" name="quote" value="<%=quoteInfo[0].quote%>"><br>
-            Author Id:
-            <input type="number" name="authorId" value="<%=quoteInfo[0].authorId%>"><br>
+            Author:
+            <!-- <input type="number" name="authorId" value="<%=quoteInfo[0].authorId%>"> -->
+            <select name="authorId">
+                <% for(author of authors){ %>
+                    <option value="<%= author.authorId %>"
+                        <% if(author.authorId == quoteInfo[0].authorId) { %>
+                            selected
+                        <% } %>
+                    >
+                        <%= author.firstName %> <%= author.lastName %>
+                    </option>
+                <% } %>
+            </select>
+            
+            <br>
             Category:
-            <input type="text" name="category" value="<%=quoteInfo[0].category%>">
+            <!-- <input type="text" name="category" value="<%=quoteInfo[0].category%>"> -->
+            <select name="category" >
+                <% for(category of categories){ %>
+                    <option value="<%= category.category %>"
+                        <% if(category.category == quoteInfo[0].category) { %>
+                            selected
+                        <% } %>
+                    >
+                        <%= category.category %> 
+                    </option>
+                <% } %>
+            </select>
             <br>
             Likes:
             <input type="text" name="likes" value="<%=quoteInfo[0].likes%>">

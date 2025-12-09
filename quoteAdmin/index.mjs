@@ -27,9 +27,27 @@ app.get('/author/new', (req, res) => {
 });
 
 //Display form for input Quote information
-app.get('/quote/new', (req, res) => {
+app.get('/quote/new', async(req, res) => {
+    // passing author name
+    let authorSql = `
+        SELECT authorId, firstName, lastName
+        FROM q_authors
+        ORDER BY lastName
+    `;
+    const [authorRows] = await pool.query(authorSql);
+
+    //passing category
+    let categorySql = `
+        SELECT DISTINCT category
+        FROM q_quotes
+        ORDER BY category
+    `;
+    const [categoryRows] = await pool.query(categorySql);
     
-    res.render('newQuote');
+    res.render('newQuote',{
+        "authors" : authorRows,
+        "categories" : categoryRows
+    });
 });
 
 
@@ -76,8 +94,29 @@ app.post('/quote/new', async(req, res) => {
                 `;
     let params = [quote, authorId, category, likes];
     const [newQuote] = await pool.query(quoteInsertSql, params);
+
+    // Fetch authors again for the re-render
+    let authorSql = `
+        SELECT authorId, firstName, lastName
+        FROM q_authors
+        ORDER BY lastName
+    `;
+    const [authorRows] = await pool.query(authorSql);
+
+    // Fetch categories again for the re-render
+    let categorySql = `
+        SELECT DISTINCT category
+        FROM q_quotes
+        ORDER BY category
+    `;
+    const [categoryRows] = await pool.query(categorySql);
+
     res.render("newQuote",
-                {"message": "Quote added!"}
+                {
+                    "message": "Quote added!",
+                    "categories": categoryRows,
+                    "authors" : authorRows
+                }
     );  
     
 });
@@ -138,9 +177,30 @@ app.get('/quote/edit', async(req, res) => {
             `;
 
     const [quoteInfo] = await pool.query(quoteInfoSql);
+
+    // Fetch authors again for editting
+    let authorSql = `
+        SELECT authorId, firstName, lastName
+        FROM q_authors
+        ORDER BY lastName
+    `;
+    const [authorRows] = await pool.query(authorSql);
+
+    // Fetch categories again for the editting
+    let categorySql = `
+        SELECT DISTINCT category
+        FROM q_quotes
+        ORDER BY category
+    `;
+    const [categoryRows] = await pool.query(categorySql);
     
     res.render('editQuote', 
-        {"quoteInfo" : quoteInfo}
+        {
+            "quoteInfo" : quoteInfo,
+            "authors" : authorRows,
+            "categories" : categoryRows
+
+        }
     );
 });
 

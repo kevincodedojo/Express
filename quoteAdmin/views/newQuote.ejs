@@ -7,10 +7,28 @@
         <form method="POST" action="/quote/new">
             Quote:
             <input type="text" name="quote"><br>
-            Author Id:
-            <input type="number" name="authorId"><br>
+            Author:
+            <!-- <input type="number" name="authorId"> -->
+             <select name="authorId" id="authorId_section">
+                <% for(author of authors){ %>
+                    <option value="<%= author.authorId%>">
+                        <%= author.firstName%>
+                        <%= author.lastName%>
+                    </option>
+                <% } %>
+            </select>
+            <br>
             Category:
-            <input type="text" name="category">
+            <!-- <input type="text" name="category"> -->
+            <select name="category" id="category_section">
+                <% for(category of categories){ %>
+                    <option value="<%= category.category%>">
+                        <%= category.category%>
+                    </option>
+                <% } %>
+            </select>
+
+
             <br>
             Likes:
             <input type="number" name="likes">
