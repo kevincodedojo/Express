@@ -4,10 +4,15 @@
 
 
         <h1>Adding a new Quote</h1>
+
+        <div class="container">
         <form method="POST" action="/quote/new">
-            Quote:
-            <input type="text" name="quote"><br>
-            Author:
+
+            <label>Quote:</label>
+            <textarea name="quote" rows="3" placeholder="Enter quote"></textarea>
+            <!-- <input type="text" name="quote"><br> -->
+
+            <label></label>Author:
             <!-- <input type="number" name="authorId"> -->
              <select name="authorId" id="authorId_section">
                 <% for(author of authors){ %>
@@ -17,8 +22,9 @@
                     </option>
                 <% } %>
             </select>
-            <br>
-            Category:
+
+            
+            <label>Category:</label>
             <!-- <input type="text" name="category"> -->
             <select name="category" id="category_section">
                 <% for(category of categories){ %>
@@ -29,18 +35,25 @@
             </select>
 
 
-            <br>
-            Likes:
-            <input type="number" name="likes">
+           
+            <label>Likes:</label>
+            <input type="number" name="likes" placeholder="0">
             <br>
             
             <button>Add Quote</button>
         </form>
 
         <% if(typeof message != "undefined") {%>
-
-            <h3><%= message%></h3>
+            <div class="message">
+                <%= message%>
+            </div>
+            
         <% } %>
-    </body>
+   
+             <a href="/" class="back-btn">← Back to Home</a>
+
+    </div>
 
     <%- include("partials/footer.ejs") %>
+    </body>
+</html>

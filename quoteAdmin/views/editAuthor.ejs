@@ -4,19 +4,28 @@
 
 
         <h1>Updating Author Data</h1>
+
+        <div class="container">
+
         <form method="POST" action="/author/edit">
             <input type="hidden" name="authorId" value="<%=authorInfo[0].authorId%>">
-            First Name:
-            <input type="text" name="fName" value="<%=authorInfo[0].firstName%>"><br>
-            Last Name:
-            <input type="text" name="lName" value="<%=authorInfo[0].lastName%>"><br>
-            Date of Birth:
+
+            <label>First Name:</label>
+            <input type="text" name="fName" value="<%=authorInfo[0].firstName%>">
+
+            <label>Last Name:</label>
+            <input type="text" name="lName" value="<%=authorInfo[0].lastName%>">
+
+            <label>Date of Birth:</label>
             <input type="date" name="birthDate" value="<%=authorInfo[0].dobISO%>">
-            <br>
-            Date of Death:
+
+       
+            <label>Date of Death:</label>
             <input type="date" name="deathDate" value="<%=authorInfo[0].dodISO%>">
-            <br>
-            Sex:
+
+        
+            <label>Sex:</label>
+            <div class="radio-group">
             <input type="radio" name="sex" value="M" 
 
                 <% if(authorInfo[0].sex == "M") { %>
@@ -32,25 +41,38 @@
                 <% } %>
 
             >Female
-            <br>
+            </div>
 
             <!-- <option value="M" selected>Male</option>
             <option value="F" >Female</option> -->
-            Profession:
-            <input type="text" name="profession" value="<%=authorInfo[0].profession%>"><br>
-            Country:
-            <input type="text" name="country" value="<%=authorInfo[0].country%>"><br>
-            Portrait:
-            <input type="text" name="portrait" value="<%=authorInfo[0].portrait%>"><br>
-            Biography:
-            <input type="text" name="biography" value="<%=authorInfo[0].biography%>"><br>
+            <label>Profession:</label>
+            <input type="text" name="profession" value="<%=authorInfo[0].profession%>">
+
+            <label>Country:</label>
+            <input type="text" name="country" value="<%=authorInfo[0].country%>">
+
+            <label>Portrait URL:</label>
+            <input type="text" name="portrait" value="<%=authorInfo[0].portrait%>">
+
+            <label>Biography:</label>
+            <textarea name="biography" rows="4"><%=authorInfo[0].biography%></textarea>
+            
             <button>Update Author</button>
         </form>
 
         <% if(typeof message != "undefined") {%>
-
-            <h3><%= message%></h3>
+            <div class="message">
+                <%= message%>
+            </div>
+            
         <% } %>
-    </body>
 
-    <%- include("partials/footer.ejs") %>
+        
+    
+        <a href="/authors" class="back-btn">← Back to Authors List</a>
+</div>
+
+        <%- include("partials/footer.ejs") %>
+    
+    </body>
+</html>

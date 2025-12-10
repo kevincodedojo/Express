@@ -4,35 +4,55 @@
 
 
         <h1>Adding a new Author</h1>
+
+        <div class="container">
         <form method="POST" action="/author/new">
-            First Name:
-            <input type="text" name="fName"><br>
-            Last Name:
-            <input type="text" name="lName"><br>
-            Date of Birth:
+            
+            <label>First Name:</label>
+            <input type="text" name="fName" placeholder="Enter first name">
+
+            <label>Last Name:</label>
+            <input type="text" name="lName" placeholder="Enter last name">
+
+            <label>Date of Birth:</label>
             <input type="date" name="birthDate">
-            <br>
-            Date of Death:
+
+            
+            <label>Date of Death:</label>
             <input type="date" name="deathDate">
-            <br>
-            Sex:
-            <input type="radio" name="sex" value="M">Male
-            <input type="radio" name="sex" value="F">Female<br>
-            Profession:
-            <input type="text" name="profession"><br>
-            Country:
-            <input type="text" name="country"><br>
-            Portrait:
-            <input type="text" name="portrait"><br>
-            Biography:
-            <input type="text" name="biography"><br>
+            
+
+            <label>Sex:</label>
+            <div class="radio-group">
+                <input type="radio" name="sex" value="M">Male
+                <input type="radio" name="sex" value="F">Female
+            </div>
+
+            <label>Profession:</label>
+            <input type="text" name="profession" placeholder="Enter profession">
+
+            <label>Country:</label>
+            <input type="text" name="country" placeholder="Enter country">
+
+            <label>Portrait:</label>
+            <input type="text" name="portrait" placeholder="Enter portrait URL"><br>
+
+            <label>Biography:</label>
+            <textarea name="biography" rows="4" placeholder="Enter biography"></textarea>
+            
             <button>Add Author</button>
         </form>
 
         <% if(typeof message != "undefined") {%>
-
-            <h3><%= message%></h3>
+            <div class="message">
+                <%= message%>
+            </div>
+            
         <% } %>
-    </body>
 
+            <a href="/" class="back-btn">← Back to Home</a>
+        </div>
     <%- include("partials/footer.ejs") %>
+
+    </body>
+</html>

@@ -3,23 +3,25 @@
 <body>
     <h1>Updata/Delate Quotes</h1>
 
+    <div class="container">
     <% for(i = 0; i < quoteRows.length; i++){ %>
+        <div class="quote-card">
+            <div class="quote-text">"<%= quoteRows[i].quote %>"</div>
+                <div>
+                    <a href="/quote/edit?quoteId=<%= quoteRows[i].quoteId %>
+                    " class="action-link update-link">UPDATE</a>
 
-        <a href="
-            /quote/edit?quoteId=<%= quoteRows[i].quoteId %>
-        ">UPDATE</a>
-
-        <a href="
-            /quote/delete?quoteId=<%= quoteRows[i].quoteId %>
-        ">DELETE</a>
-
-        <%= quoteRows[i].quote %><br>
-    
-
+                    <a href="/quote/delete?quoteId=<%= quoteRows[i].quoteId %>
+                    " class="action-link delete-link">DELETE</a>
+                </div>
+            
+            </div>
     <% } %>
 
 
-
-</body>
+        <a href="/" class="back-btn">← Back to Home</a>
+    </div>
 
 <%- include("partials/footer.ejs") %>
+</body>
+</html>

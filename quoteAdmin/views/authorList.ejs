@@ -1,25 +1,32 @@
 <%- include("partials/header.ejs") %>
 
-<body>
-    <h1>Updata/Delate Authors</h1>
+    <body>
+        <h1>Update/Delete Authors</h1>
 
-    <% for(i = 0; i < authorRows.length; i++){ %>
+        <div class="container">
 
-        <a href="
-            /author/edit?authorId=<%= authorRows[i].authorId %>
-        ">UPDATE</a>
+            <% for(i=0; i < authorRows.length; i++){ %>
+                <div class="list-item">
 
-        <a href="
-            /author/delete?authorId=<%= authorRows[i].authorId %>
-        ">DELETE</a>
+                <a href="/author/edit?authorId=<%= authorRows[i].authorId %>"
+                    class="action-link update-link">UPDATE</a>
 
-        <%= authorRows[i].firstName %>
-        <%= authorRows[i].lastName %> <br>
+                <a href="/author/delete?authorId=<%= authorRows[i].authorId %>"
+                    class="action-link delete-link">DELETE</a>
+                        <span class="item-name">
+                        <%= authorRows[i].firstName %>
+                        <%= authorRows[i].lastName %> 
+                            </span>
+                        </div>
+            <% } %>
 
-    <% } %>
+            <a href="/" class="back-btn">← Back to Home</a>
+        </div>
 
 
 
-</body>
+        <%- include("partials/footer.ejs") %>
 
-<%- include("partials/footer.ejs") %>
+    </body>
+
+    </html>

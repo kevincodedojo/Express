@@ -4,50 +4,59 @@
 
 
         <h1>Updating Quote Data</h1>
-        <form method="POST" action="/quote/edit">
-            <input type="hidden" name="quoteId" value="<%=quoteInfo[0].quoteId%>">
-            Quote:
-            <input type="text" name="quote" value="<%=quoteInfo[0].quote%>"><br>
-            Author:
-            <!-- <input type="number" name="authorId" value="<%=quoteInfo[0].authorId%>"> -->
-            <select name="authorId">
-                <% for(author of authors){ %>
-                    <option value="<%= author.authorId %>"
-                        <% if(author.authorId == quoteInfo[0].authorId) { %>
-                            selected
-                        <% } %>
-                    >
-                        <%= author.firstName %> <%= author.lastName %>
-                    </option>
-                <% } %>
-            </select>
+
+         <div class="container">
+            <form method="POST" action="/quote/edit">
+                <input type="hidden" name="quoteId" value="<%=quoteInfo[0].quoteId%>">
+                <label>Quote:</label>
+                <textarea name="quote" rows="3"><%=quoteInfo[0].quote%></textarea>
+                <!-- <input type="text" name="quote" value="<%=quoteInfo[0].quote%>"> -->
+
+                <label>Author:</label>
+                <!-- <input type="number" name="authorId" value="<%=quoteInfo[0].authorId%>"> -->
+                <select name="authorId">
+                    <% for(author of authors){ %>
+                        <option value="<%= author.authorId %>"
+                            <% if(author.authorId == quoteInfo[0].authorId) { %>
+                                selected
+                            <% } %>
+                        >
+                            <%= author.firstName %> <%= author.lastName %>
+                        </option>
+                    <% } %>
+                </select>
+                
             
-            <br>
-            Category:
-            <!-- <input type="text" name="category" value="<%=quoteInfo[0].category%>"> -->
-            <select name="category" >
-                <% for(category of categories){ %>
-                    <option value="<%= category.category %>"
-                        <% if(category.category == quoteInfo[0].category) { %>
-                            selected
-                        <% } %>
-                    >
-                        <%= category.category %> 
-                    </option>
-                <% } %>
-            </select>
-            <br>
-            Likes:
-            <input type="text" name="likes" value="<%=quoteInfo[0].likes%>">
-            <br>
-           
-            <button>Update Quote</button>
-        </form>
+                <label>Category:</label>
+                <!-- <input type="text" name="category" value="<%=quoteInfo[0].category%>"> -->
+                <select name="category" >
+                    <% for(category of categories){ %>
+                        <option value="<%= category.category %>"
+                            <% if(category.category == quoteInfo[0].category) { %>
+                                selected
+                            <% } %>
+                        >
+                            <%= category.category %> 
+                        </option>
+                    <% } %>
+                </select>
+               
+                <label>Likes:</label>
+                <input type="text" name="likes" value="<%=quoteInfo[0].likes%>">
+                
+            
+                <button>Update Quote</button>
+            </form>
 
-        <% if(typeof message != "undefined") {%>
+            <% if(typeof message != "undefined") {%>
+                <div class="message">
+                <%= message %>
+                </div>
+            <% } %>
+                
+                <a href="/quotes" class="back-btn">← Back to Quotes List</a>
+    </div>
+<%- include("partials/footer.ejs") %>
 
-            <h3><%= message%></h3>
-        <% } %>
-    </body>
-
-    <%- include("partials/footer.ejs") %>
+</body>
+</html>
